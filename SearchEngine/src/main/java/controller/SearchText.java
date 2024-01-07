@@ -1,4 +1,4 @@
-package com.example.searchengine;
+package controller;
 
 import java.util.ArrayList;
 import java.util.Objects;

@@ -1,5 +1,8 @@
 package com.example.searchengine;
 
+import controller.MapEditor;
+import controller.SearchText;
+
 import java.util.Objects;
 import java.util.Scanner;
 

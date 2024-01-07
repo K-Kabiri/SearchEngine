@@ -1,4 +1,4 @@
-package com.example.searchengine;
+package controller;
 
 import java.io.BufferedReader;
 import java.io.File;

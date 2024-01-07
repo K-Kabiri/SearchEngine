@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.ScrollPane?>
+<?import javafx.scene.effect.DropShadow?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.Pane?>
+<?import javafx.scene.paint.Color?>
+<?import javafx.scene.shape.Line?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="documentListPane" prefHeight="599.0" prefWidth="623.0" style="-fx-background-color: #ffffffff;" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.searchengine.ResultPageController">
+   <children>
+      <ImageView fitHeight="150.0" fitWidth="200.0" layoutX="473.0" layoutY="445.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Search engines-bro.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Search engines-rafiki.png" />
+         </image>
+      </ImageView>
+      <Line endX="-21.79998779296875" endY="293.4000244140625" layoutX="41.0" layoutY="267.0" startX="395.0" startY="293.4000244140625" stroke="#a12c2c" strokeWidth="3.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.4842105209827423" green="0.12732943892478943" blue="0.12732943892478943" />
+               </color>
+            </DropShadow>
+         </effect></Line>
+      <Line endX="-21.79998779296875" endY="293.4000244140625" layoutX="58.0" layoutY="286.0" startX="-21.79998779296875" startY="-110.60000610351562" stroke="#a12c2c" strokeWidth="3.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5684210658073425" green="0.12210526317358017" blue="0.12210526317358017" />
+               </color>
+            </DropShadow>
+         </effect></Line>
+      <Line endX="-21.79998779296875" endY="293.4000244140625" layoutX="191.0" layoutY="-255.0" startX="409.0" startY="293.4000244140625" stroke="#a12c2c" strokeWidth="3.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.5157894492149353" green="0.08023391664028168" blue="0.08023391664028168" />
+               </color>
+            </DropShadow>
+         </effect></Line>
+      <Line endX="-21.800048828125" endY="309.3999938964844" fill="BLACK" layoutX="600.0" layoutY="109.0" startX="-21.79998779296875" startY="-93.20001220703125" stroke="#a12c2c" strokeWidth="3.0">
+         <effect>
+            <DropShadow>
+               <color>
+                  <Color red="0.6105263233184814" green="0.11984405666589737" blue="0.11984405666589737" />
+               </color>
+            </DropShadow>
+         </effect></Line>
+      <ListView fx:id="documentViewList" editable="true" fixedCellSize="30.0" layoutX="162.0" layoutY="72.0" prefHeight="454.0" prefWidth="299.0" style="-fx-background-color: #ffffffff;" />
+      <ImageView fx:id="searchPageIcon" fitHeight="36.0" fitWidth="29.0" layoutX="454.0" layoutY="546.0" onMouseClicked="#searchPageIcon" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/right-circular-64.png" />
+         </image>
+      </ImageView>
+      <Pane fx:id="documentPagePane" cache="true" prefHeight="599.0" prefWidth="632.0" style="-fx-background-color: #CEB4B3;" visible="false">
+         <children>
+            <ScrollPane layoutX="122.0" layoutY="88.0" prefHeight="424.0" prefWidth="389.0" style="-fx-background-radius: 10;">
+               <content>
+                  <Label fx:id="textField" alignment="TOP_CENTER" prefHeight="650.0" prefWidth="398.0" style="-fx-background-color: #ffffff;" wrapText="true">
+                     <padding>
+                        <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />
+                     </padding>
+                     <effect>
+                        <DropShadow />
+                     </effect>
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Label>
+               </content>
+            </ScrollPane>
+            <ImageView fx:id="backIcon" fitHeight="30.0" fitWidth="29.0" layoutX="12.0" layoutY="555.0" onMouseClicked="#backIcon" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/right-circular-64.png" />
+               </image>
+            </ImageView>
+            <ImageView fitHeight="150.0" fitWidth="150.0" layoutX="487.0" layoutY="458.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Search engines-amico.png" />
+               </image>
+            </ImageView>
+            <Label alignment="CENTER" layoutX="260.0" layoutY="22.0" prefHeight="36.0" prefWidth="113.0">
+               <font>
+                  <Font name="System Bold" size="22.0" />
+               </font>
+            </Label>
+            <ImageView fitHeight="133.0" fitWidth="131.0" layoutY="-2.0" pickOnBounds="true" preserveRatio="true">
+               <image>
+                  <Image url="@images/Usability%20testing-pana.png" />
+               </image>
+            </ImageView>
+         </children>
+      </Pane>
+   </children>
+</AnchorPane>
