@@ -10,16 +10,18 @@ public class SearchText {
     private boolean checkPositive = false;
     private ArrayList<Integer> filesWithNegative;
     private ArrayList<Integer> unsignedFiles;
+    private boolean checkUnsigned=false;
 
     private ArrayList<Integer> outputDocuments;
 
-    public SearchText(String inputText, MapEditor mapEditor) {
+    public SearchText(String inputText, MapEditor mapEditor)  {
         this.inputText = inputText;
         this.filesWithPositive = new ArrayList<>();
         this.filesWithNegative = new ArrayList<>();
         this.unsignedFiles = new ArrayList<>();
         this.outputDocuments = new ArrayList<>();
         this.mapEditor = mapEditor;
+        createOutPut();
     }
 
     public ArrayList<Integer> getOutputDocuments() {
@@ -29,9 +31,52 @@ public class SearchText {
     public boolean isCheckPositive() {
         return checkPositive;
     }
+    public boolean isCheckUnsigned() {
+        return checkUnsigned;
+    }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>functions<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
+    private void createOutPut()  {
+        findDocuments();
+        if (!unsignedFiles.isEmpty()){
+            if (!filesWithPositive.isEmpty() && !filesWithNegative.isEmpty()){
+                filesWithPositive = removeNegative(filesWithPositive);
+                unsignedFiles = removeNegative(unsignedFiles);
+                outputDocuments.addAll(subscription());
+            } else if (!filesWithPositive.isEmpty() && filesWithNegative.isEmpty()) {
+                outputDocuments.addAll(subscription());
+            }
+            else if (!filesWithNegative.isEmpty() && filesWithPositive.isEmpty()){
+                if (isCheckPositive())
+                    outputDocuments.addAll(subscription());
+                else {
+                    unsignedFiles = removeNegative(unsignedFiles);
+                    outputDocuments.addAll(unsignedFiles);
+                }
+            }
+            else
+                outputDocuments.addAll(unsignedFiles);
+        }
+        else{
+            if (checkUnsigned){
+                outputDocuments.addAll(null);//???
+            }
+            else {
+                if (!filesWithPositive.isEmpty() && !filesWithNegative.isEmpty()){
+                    filesWithPositive=removeNegative(filesWithPositive);
+                    outputDocuments.addAll(filesWithPositive);
+                }
+                else if (!filesWithPositive.isEmpty()&& filesWithNegative.isEmpty()){
+                    outputDocuments.addAll(filesWithPositive);
+                }
+                else if (!filesWithNegative.isEmpty()&& filesWithPositive.isEmpty()){
+                    outputDocuments.addAll(null);//????
+                }
+            }
+        }
+    }
 
+    //---------------------------------------------------
     private void findDocuments() {
         String[] temp = inputText.split(" ");
         for (int i = 0; i < temp.length; i++) {
@@ -50,6 +95,7 @@ public class SearchText {
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
     private void findUnsignedWords(String str) {
+        checkUnsigned=true;
         if (unsignedFiles.isEmpty()) {
             unsignedFiles.addAll(mapEditor.getMap().get(str));
         } else {
@@ -69,9 +115,9 @@ public class SearchText {
 
     //-------------------------------------------------------------------
     private void findPositiveWords(String str) {
+        checkPositive = true;
         ArrayList<Integer> temp = mapEditor.getMap().get(str);
         if (temp != null) {
-            checkPositive = true;
             filesWithPositive.addAll(temp);
         }
     }
@@ -86,8 +132,8 @@ public class SearchText {
         } else {
             ArrayList<Integer> output = mapEditor.getMap().get(str);
             if (output != null) {
-                boolean found = false;
                 for (Integer value : output) {
+                    boolean found = false;
                     for (Integer integer : filesWithNegative) {
                         if (Objects.equals(value, integer)) {
                             found = true;
@@ -109,5 +155,38 @@ public class SearchText {
             newStr.append(str.charAt(i));
         }
         return newStr.toString();
+    }
+
+    // remove subscription of a list with filesWithNegative
+    private ArrayList<Integer> removeNegative(ArrayList<Integer> array) {
+        ArrayList<Integer> temp = new ArrayList<>();
+        for (Integer value : array) {
+            boolean found = false;
+            for (Integer integer : filesWithNegative) {
+                if (Objects.equals(value, integer)) {
+                    found = true;
+                    break;
+                }
+            }
+            if (!found)
+                temp.add(value);
+        }
+        array = temp;
+        return array;
+    }
+
+    // find subscription of unSingedFiles and filesWithPositive
+    private ArrayList<Integer> subscription() {
+        ArrayList<Integer> temp = new ArrayList<>(unsignedFiles);
+        unsignedFiles.clear();
+        for (Integer value : temp) {
+            for (Integer integer : filesWithPositive) {
+                if (Objects.equals(value, integer)) {
+                    unsignedFiles.add(value);
+                    break;
+                }
+            }
+        }
+        return unsignedFiles;
     }
 }
