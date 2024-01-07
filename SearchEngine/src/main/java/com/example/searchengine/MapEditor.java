@@ -6,17 +6,20 @@ import java.util.Map;
 
 public class MapEditor {
     private final Map<String, ArrayList<Integer>> map;
+    private final String path;
 
-    public MapEditor() {
+    public MapEditor(String path) {
+        this.path=path;
         this.map=new HashMap<>();
+        folderReader();
     }
 
     public Map<String, ArrayList<Integer>> getMap() {
         return map;
     }
 
-    public void folderReader() {
-        java.io.File directoryPath = new java.io.File("EnglishData");
+    private void folderReader() {
+        java.io.File directoryPath = new java.io.File(path);
         java.io.File filesList[] = directoryPath.listFiles();
         for (java.io.File file : filesList) {
             creatMap(file);
