@@ -14,7 +14,7 @@ public class SearchText {
 
     private ArrayList<Integer> outputDocuments;
 
-    public SearchText(String inputText, MapEditor mapEditor)  {
+    public SearchText(String inputText, MapEditor mapEditor) throws Exception {
         this.inputText = inputText;
         this.filesWithPositive = new ArrayList<>();
         this.filesWithNegative = new ArrayList<>();
@@ -36,7 +36,7 @@ public class SearchText {
     }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>functions<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<
-    private void createOutPut()  {
+    private void createOutPut() throws Exception {
         findDocuments();
         if (!unsignedFiles.isEmpty()){
             if (!filesWithPositive.isEmpty() && !filesWithNegative.isEmpty()){
@@ -77,7 +77,7 @@ public class SearchText {
     }
 
     //---------------------------------------------------
-    private void findDocuments() {
+    private void findDocuments() throws Exception {
         String[] temp = inputText.split(" ");
         for (int i = 0; i < temp.length; i++) {
             String word = temp[i].toUpperCase();
@@ -94,23 +94,27 @@ public class SearchText {
     }
 
     //>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>.
-    private void findUnsignedWords(String str) {
+    private void findUnsignedWords(String str) throws Exception {
         checkUnsigned=true;
-        if (unsignedFiles.isEmpty()) {
-            unsignedFiles.addAll(mapEditor.getMap().get(str));
-        } else {
-            ArrayList<Integer> temp = new ArrayList<>();
-            ArrayList<Integer> output = mapEditor.getMap().get(str);
-            for (Integer unsignedFile : unsignedFiles) {
-                for (Integer integer : output) {
-                    if (Objects.equals(unsignedFile, integer)) {
-                        temp.add(unsignedFile);
-                        break;
+        if (!mapEditor.getMap().get(str).isEmpty()) {
+            if (unsignedFiles.isEmpty()) {
+                unsignedFiles.addAll(mapEditor.getMap().get(str));
+            } else {
+                ArrayList<Integer> temp = new ArrayList<>();
+                ArrayList<Integer> output = mapEditor.getMap().get(str);
+                for (Integer unsignedFile : unsignedFiles) {
+                    for (Integer integer : output) {
+                        if (Objects.equals(unsignedFile, integer)) {
+                            temp.add(unsignedFile);
+                            break;
+                        }
                     }
                 }
+                unsignedFiles = temp;
             }
-            unsignedFiles = temp;
         }
+        else
+            throw new Exception("No found!");
     }
 
     //-------------------------------------------------------------------

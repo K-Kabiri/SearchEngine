@@ -8,6 +8,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
@@ -34,12 +35,21 @@ public class SearchPageController implements Initializable {
     @FXML
     void searchButton(MouseEvent event) throws IOException {
         String inputSearch=searchField.getText();
-        searchText=new SearchText(inputSearch,mapEditor);
-        Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("result-page.fxml")));
-        Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-        Scene scene = new Scene(parent);
-        stage.setScene(scene);
-        stage.show();
+        try {
+            searchText=new SearchText(inputSearch,mapEditor);
+            Parent parent = FXMLLoader.load(Objects.requireNonNull(getClass().getResource("result-page.fxml")));
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            Scene scene = new Scene(parent);
+            stage.setScene(scene);
+            stage.show();
+        }
+        catch (Exception e){
+            Alert error = new Alert(Alert.AlertType.ERROR, "Not Found!");
+            error.setTitle("Error!");
+            error.setHeaderText("EMPTY!");
+            error.show();
+        }
+
 
     }
 

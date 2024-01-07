@@ -63,9 +63,11 @@ public class ResultPageController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
 
+        System.out.println(documents.length);
         for (int i = 0; i < SearchPageController.searchText.getOutputDocuments().size(); i++) {
             documents[i] = String.valueOf(SearchPageController.searchText.getOutputDocuments().get(i));
-            documentViewList.getItems().add(i,"Document"+(i+1));
+            documentViewList.getItems().add("Document"+(i+1));
+            System.out.println(documents[i]);
         }
 
         //documentViewList.getItems().addAll("Document"+i+documents);
@@ -74,7 +76,7 @@ public class ResultPageController implements Initializable {
             public void changed(ObservableValue<? extends String> observableValue, String s, String t1) {
                 currentChoice = documentViewList.getSelectionModel().getSelectedItem();
                 documentPagePane.setVisible(true);
-                textField.setText(printText(documents[currentChoice.charAt(8)-1]).toString());
+                textField.setText(printText(documents[Integer.parseInt(String.valueOf(currentChoice.charAt(8)))-1]).toString());
             }
         });
 
