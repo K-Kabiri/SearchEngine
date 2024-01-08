@@ -43,19 +43,17 @@ public class SearchText {
                 filesWithPositive = removeNegative(filesWithPositive);
                 unsignedFiles = removeNegative(unsignedFiles);
                 outputDocuments.addAll(subscription());
-            } else if (!filesWithPositive.isEmpty() && filesWithNegative.isEmpty()) {
+            } else if (!filesWithPositive.isEmpty()) {
                 outputDocuments.addAll(subscription());
             }
-            else if (!filesWithNegative.isEmpty() && filesWithPositive.isEmpty()){
-                if (isCheckPositive())
+            else {
+                if (isCheckPositive()&& filesWithNegative.isEmpty())
                     outputDocuments.addAll(subscription());
                 else {
                     unsignedFiles = removeNegative(unsignedFiles);
                     outputDocuments.addAll(unsignedFiles);
                 }
             }
-            else
-                outputDocuments.addAll(unsignedFiles);
         }
         else{
             if (checkUnsigned){
