@@ -30,7 +30,7 @@ public class FileEditor {
         try (BufferedReader br = new BufferedReader(new FileReader(path))) {
 
             while ((line = br.readLine()) != null) {
-                in=line.split("[,?.@+*/:;\"()=&^%$#!><{}_|'\\[\\]\\\\`~-]+");
+                in=line.split("[,?.@+*/:;\"\s()=&^%$#!><{}_|'\\[\\]\\\\`~-]+");
                 for (String s : in) {
                     text.append(s+" ");
                 }
