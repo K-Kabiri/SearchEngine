@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane fx:id="pane" prefHeight="599.0" prefWidth="623.0" xmlns="http://javafx.com/javafx/19" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.searchengine.SearchPageController">
+   <children>
+      <ImageView fitHeight="601.0" fitWidth="632.0" layoutX="12.0" layoutY="2.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@images/Browsing online-pana.png" />
+         </image>
+      </ImageView>
+      <TextField fx:id="searchField" layoutX="158.0" layoutY="96.0" prefHeight="38.0" prefWidth="274.0" promptText="search..." style="-fx-background-color: #ffffffff;">
+         <font>
+            <Font name="System Italic" size="17.0" />
+         </font>
+      </TextField>
+      <Button fx:id="searchButton" layoutX="436.0" layoutY="87.0" mnemonicParsing="false" onMouseClicked="#searchButton" opacity="0.0" prefHeight="55.0" prefWidth="62.0" />
+   </children>
+</AnchorPane>

@@ -1,10 +1,13 @@
 package com.example.searchengine;
 
+import controller.MapEditor;
+import controller.SearchText;
+
 import java.util.Objects;
 import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         Scanner sc=new Scanner(System.in).useDelimiter("\n");
 
         System.out.println("> Enter folder Address :");
